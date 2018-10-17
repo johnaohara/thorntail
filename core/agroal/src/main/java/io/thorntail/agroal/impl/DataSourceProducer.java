@@ -1,22 +1,18 @@
-package io.thorntail.datasources.impl;
+package io.thorntail.agroal.impl;
 
-import com.arjuna.ats.arjuna.common.CoreEnvironmentBeanException;
-import com.arjuna.ats.arjuna.common.arjPropertyManager;
 import io.agroal.api.AgroalDataSource;
 import io.agroal.api.configuration.supplier.AgroalDataSourceConfigurationSupplier;
 import io.agroal.api.security.NamePrincipal;
 import io.agroal.api.security.SimplePassword;
 import io.agroal.api.transaction.TransactionIntegration;
 import io.agroal.narayana.NarayanaTransactionIntegration;
-import io.thorntail.datasources.AgroalPoolMetaData;
-import io.thorntail.jdbc.DriverMetaData;
+import io.thorntail.agroal.AgroalPoolMetaData;
 import io.thorntail.jdbc.impl.JDBCDriverRegistry;
 
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
-import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -55,9 +51,6 @@ public class DataSourceProducer {
 
     @Inject
     JDBCDriverRegistry jdbcDriverRegistry;
-
-    private AgroalDataSource dataSource;
-
 
     public AgroalDataSource deploy(AgroalPoolMetaData metaData) throws SQLException {
         this.setUrl(metaData.getConnectionUrl());
@@ -98,11 +91,6 @@ public class DataSourceProducer {
         dataSourceConfiguration.connectionPoolConfiguration().connectionFactoryConfiguration().connectionProviderClass(providerClass);
 
         if (jta || xa) {
-            try {
-                arjPropertyManager.getCoreEnvironmentBean().setNodeIdentifier("thorntail");
-            } catch (CoreEnvironmentBeanException e) {
-                e.printStackTrace();
-            }
             TransactionIntegration txIntegration = new NarayanaTransactionIntegration(transactionManager, transactionSynchronizationRegistry, null, connectable);
             dataSourceConfiguration.connectionPoolConfiguration().transactionIntegration(txIntegration);
         }

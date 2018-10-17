@@ -1,4 +1,4 @@
-package io.thorntail.datasources.impl;
+package io.thorntail.agroal.impl;
 
 import org.jboss.logging.BasicLogger;
 import org.jboss.logging.Logger;

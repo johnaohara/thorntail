@@ -1,4 +1,4 @@
-package io.thorntail.datasources;
+package io.thorntail.agroal;
 
 import io.thorntail.jdbc.DriverMetaData;
 import io.thorntail.TraceMode;

@@ -1,4 +1,4 @@
-package io.thorntail.datasources.impl.opentracing;
+package io.thorntail.agroal.impl.opentracing;
 
 import io.agroal.api.configuration.supplier.AgroalConnectionFactoryConfigurationSupplier;
 import io.thorntail.TraceMode;

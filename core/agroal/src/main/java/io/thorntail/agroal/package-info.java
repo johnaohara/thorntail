@@ -1,4 +1,4 @@
 /**
  * Support for JDBC datasources.
  */
-package io.thorntail.datasources;
+package io.thorntail.agroal;

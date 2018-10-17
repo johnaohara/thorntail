@@ -1,7 +1,7 @@
-package io.thorntail.datasources.impl;
+package io.thorntail.agroal.impl;
 
 import io.agroal.api.AgroalDataSource;
-import io.thorntail.datasources.AgroalPoolMetaData;
+import io.thorntail.agroal.AgroalPoolMetaData;
 import io.thorntail.events.LifecycleEvent;
 
 import javax.annotation.PreDestroy;

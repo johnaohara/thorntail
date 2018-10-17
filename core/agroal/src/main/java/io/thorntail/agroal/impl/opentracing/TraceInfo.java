@@ -1,7 +1,7 @@
-package io.thorntail.datasources.impl.opentracing;
+package io.thorntail.agroal.impl.opentracing;
 
 import io.opentracing.Scope;
-import io.opentracing.Span;
+
 import java.sql.SQLException;
 
 import io.opentracing.Tracer;

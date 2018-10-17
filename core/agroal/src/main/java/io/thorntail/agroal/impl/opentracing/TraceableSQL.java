@@ -1,4 +1,4 @@
-package io.thorntail.datasources.impl.opentracing;
+package io.thorntail.agroal.impl.opentracing;
 
 import java.sql.SQLException;
 

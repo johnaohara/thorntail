@@ -1,4 +1,4 @@
-package io.thorntail.datasources.impl;
+package io.thorntail.agroal.impl;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -11,7 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
-import io.thorntail.datasources.AgroalPoolMetaData;
+import io.thorntail.agroal.AgroalPoolMetaData;
 import org.eclipse.microprofile.config.Config;
 import io.thorntail.TraceMode;
 
