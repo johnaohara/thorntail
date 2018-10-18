@@ -20,7 +20,7 @@ public class DeploymentActivator {
     void init(@Observes LifecycleEvent.Initialize event) {
         for (AgroalPoolMetaData metaData : this.poolRegistry.getDatasources()) {
             try {
-                this.dataSources.add(dataSourceProducer.deploy(metaData));
+                this.dataSources.add(agroalProducer.deploy(metaData));
             } catch (Throwable t) {
                 throw new RuntimeException(t);
             }
@@ -36,7 +36,7 @@ public class DeploymentActivator {
     }
 
     @Inject
-    DataSourceProducer dataSourceProducer;
+    AgroalProducer agroalProducer;
 
     @Inject
     AgroalPoolRegistry poolRegistry;

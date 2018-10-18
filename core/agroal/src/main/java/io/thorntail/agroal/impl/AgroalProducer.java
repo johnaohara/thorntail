@@ -7,6 +7,7 @@ import io.agroal.api.security.SimplePassword;
 import io.agroal.api.transaction.TransactionIntegration;
 import io.agroal.narayana.NarayanaTransactionIntegration;
 import io.thorntail.agroal.AgroalPoolMetaData;
+import io.thorntail.jdbc.DriverMetaData;
 import io.thorntail.jdbc.impl.JDBCDriverRegistry;
 
 import javax.annotation.PreDestroy;
@@ -25,9 +26,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @ApplicationScoped
-public class DataSourceProducer {
+public class AgroalProducer {
 
-    private static final Logger log = Logger.getLogger(DataSourceProducer.class.getName());
+    private static final Logger log = Logger.getLogger(AgroalProducer.class.getName());
 
     private Class driver;
     private String dataSourceName;
@@ -55,7 +56,12 @@ public class DataSourceProducer {
     public AgroalDataSource deploy(AgroalPoolMetaData metaData) throws SQLException {
         this.setUrl(metaData.getConnectionUrl());
 
-        String driverClassname = jdbcDriverRegistry.get(metaData.getDriver()).getDriverClassName();
+        DriverMetaData driverMetaData = jdbcDriverRegistry.get(metaData.getDriver());
+        if ( driverMetaData == null) {
+            AgroalMessages.MESSAGES.noRegisteredJDBCdrivers();
+            return null;
+        }
+        String driverClassname = driverMetaData.getDriverClassName();
         try {
             this.setDriver(this.getClass().getClassLoader().loadClass(driverClassname));
         } catch (ClassNotFoundException e) {

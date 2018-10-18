@@ -15,9 +15,9 @@ import static io.thorntail.logging.impl.LoggingUtil.CODE;
  */
 @MessageLogger(projectCode = CODE, length = 6)
 public interface AgroalMessages extends BasicLogger {
-    AgroalMessages MESSAGES = Logger.getMessageLogger(AgroalMessages.class, LoggingUtil.loggerCategory("datasources"));
+    AgroalMessages MESSAGES = Logger.getMessageLogger(AgroalMessages.class, LoggingUtil.loggerCategory("agroal"));
 
-    int OFFSET = MessageOffsets.DATASOURCES_OFFSET;
+    int OFFSET = MessageOffsets.AGROAL_OFFSET;
 
     @LogMessage(level = Logger.Level.INFO)
     @Message(id = 0 + OFFSET, value = "datasource for '%s' bound to '%s'")
